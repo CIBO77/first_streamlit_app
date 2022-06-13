@@ -41,7 +41,7 @@ streamlit.write('The user entered', fruit_choiceSQL)
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
-my_cur.execute("select * from fruit_load_list where fruit_name = '" + fruit_choiceSQL + "'")
+my_cur.execute("select * from fruit_load_list where fruit_name like '%" + fruit_choiceSQL + "%'")
 my_data_rows = my_cur.fetchall()
 
 streamlit.dataframe(my_data_rows)
